@@ -2,7 +2,7 @@
 
 Designed to reduce the workload and pin count to incorporate a LCD and keypad.  Pease copy and improve this project in any way you wish.
 
-##Hardware
+## Hardware
 - ATmega328 based LCD piggy back board with 5x4 Keypad port.
 - ATmega328 using internal 8Mhz clock.
 - uses MCUdude Minicore bootloader.
@@ -13,7 +13,7 @@ Designed to reduce the workload and pin count to incorporate a LCD and keypad.  
 - Variable Backlight control.
 - Piezo, click on key press.
 
-##Firmware
+## Firmware
 - Commands from either 9600 serial or I2c (add 42).
 - Basic LCD fuctions like Clear, Cursor, Print, Print at,
 ### Extra features
