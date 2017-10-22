@@ -1,7 +1,8 @@
 # arduLCDkeypad
 
 ![arduLCDkeyboard](arduLCDkeyboard.JPG)
-Designed to reduce the workload and pin count to incorporate a LCD and keypad.  Pease copy and improve this project in any way you wish.
+
+- Designed to reduce the workload and pin count to incorporate a LCD and keypad.  Pease copy and improve this project in any way you wish.
 
 ## Hardware
 - ATmega328 based LCD piggy back board with 5x4 Keypad port.
