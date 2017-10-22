@@ -23,5 +23,5 @@ Designed to reduce the workload and pin count to incorporate a LCD and keypad.  
 - Auto time mode: using Time library, update the LCD every second 
 
 ## Library
-- Painless interfacing to arduLCDkeypad.
+- Simple interfacing to arduLCDkeypad.
 
