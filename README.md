@@ -1,5 +1,6 @@
 # arduLCDkeypad
 
+https://github.com/mackelec/arduLCDkeypad/blob/master/arduLCDkeyboard.JPG
 Designed to reduce the workload and pin count to incorporate a LCD and keypad.  Pease copy and improve this project in any way you wish.
 
 ## Hardware
