@@ -7,5 +7,4 @@
 - Variable contrast control.
 - Variable Backlight control.
 - Piezo, click on key press.
--
-- Library - stream compatible.
+
