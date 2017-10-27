@@ -13,16 +13,16 @@
 - Serial and I2c interface.
 - Variable contrast control.
 - Variable Backlight control.
-- Piezo, click on key press.
+- Piezo, click sound on key press.
 
 ## Firmware
-- Commands from either 9600 serial or I2c (address 42).
+- Communicate Commands by either 9600 serial or I2c (address 42).
 - Basic LCD fuctions like Clear, Cursor, Print, Print at,
 ### Extra features
 - Predefine a field (template) with a format string (as in C printf format).  Just update a variable value and it will format and print it at the right location.
 - Predefined Time formats.  ("HH:mm:ss") or ("YYYY-MM-dd HH:mm:ss") Using the long value (time_t ) as the variable type.
-- Auto time mode: using Time library, update the LCD every second.
-- Dual settings for backlight level.  Keypress activates higher backlight level nad times out to lower level.
+- Auto time mode: using Time library to maintain a real time clock; if used it will autonomously refresh the time field every second.
+- Dual settings for backlight level.  Keypress activates higher backlight level and times out to lower level.
 
 ## Library
 - Simple interfacing to arduLCDkeypad.
