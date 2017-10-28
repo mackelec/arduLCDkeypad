@@ -74,7 +74,7 @@ void checkKeyPad()
   if (_key != NO_KEY)
   {
     key = _key;
-    Serial << "key=" << _key <<endl;
+    //Serial << "key=" << _key <<endl;
     digitalWrite(buzzer,HIGH);
     buttonClickTimer.start();
     setBacklightActive();
@@ -87,7 +87,7 @@ void I2CrequestEvent()
   {
     pMessage << endl;
     Wire.write(messBuffer);
-    Serial << "sending Reset " << pMessage << endl;
+    //Serial << "sending Reset " << pMessage << endl;
     pMessage.begin();
     return;
   }

@@ -3,7 +3,7 @@
 //#include <fauxStreamString.h>
 #include <cppQueue.h>
 
-Queue q(sizeof(char),100,FIFO);
+Queue q(sizeof(char),200,FIFO);
 //char buff[21]; //i2cBuff[40];
 //fauxStreamString fStreamString(i2cBuff);
 
@@ -241,20 +241,7 @@ void  unrecognized_I2C(const char *command)
 {
   Serial << F("unrecognised I2C :") << command << endl;
 }
-/*
-union varToBytes
-  {
-    uint8_t uint8_value;
-    int8_t int8_value;
-    unsigned int uint_value;
-    int int_value;
-    unsigned long ulong_value;
-    long long_value;
-    float float_value;
-    byte bytes[4];
-  };
 
-*/
 void commandIUpdateValue()
 {
   char *argId = cmdI2C.next();
@@ -288,18 +275,17 @@ void commandIUpdateString()
 {
   //Serial << "UpdateString" << endl;
   char *argId = cmdI2C.next();
+  char *argVarType = cmdI2C.next();
   char *argString = cmdI2C.next();
   uint8_t id=0;
   if (argId != NULL) id = atoi(argId);
   if (id >= numLcdFields) return;
+  if (argVarType != NULL) lcdFields[id].varType = atoi(argVarType);
   if (argString != NULL) 
   {
-    //free(lcdFields[id].displayString);
-    //char *buf = (char *)malloc (sizeof (argString));
-    //strcpy (buf,argString);
-    //lcdFields[id].displayString = buf;
+    printBlank(lcdFields[id].col,lcdFields[id].row,lcdFields[id].len);
+    commandPrint(argString);
   }
-  paint(id);
   
 }
 
@@ -357,108 +343,3 @@ void commandISetAutoTime()
   if (autoTime >= 0)  lcdFields[autoTime].varType = 9;
 }
 
-void commandIUpdateLcdField_old()
-{
-  //Serial << "CommandUpdateField" << endl;
-  char *argId = cmdI2C.next();
-  char *argCol = cmdI2C.next();
-  char *argRow = cmdI2C.next();
-  char *argLen = cmdI2C.next();
-  char *argVis = cmdI2C.next();
-  //char *argVarType = cmdI2C.next();
-  char *argFormat = cmdI2C.next();
-
-  uint8_t id=0;
-  bool visible = false;
-  if (argId != NULL) id = atoi(argId);
-  if (id >= numLcdFields) return;
-  lcdFields[id].id = id;
-  if (argCol != NULL) lcdFields[id].col = atoi(argCol);
-  if (argRow != NULL) lcdFields[id].row = atoi(argRow);
-  if (argLen != NULL) lcdFields[id].len = atoi(argLen);
-  if (argVis != NULL) lcdFields[id].visible( (bool)(atoi(argVis)));
-  
-  if (argFormat != NULL) 
-  {
-    Serial << F("argFormat [") << argFormat << "]" << endl; 
-    charHeap_pushString(id,argFormat);
-    Serial << F("charHeap contents, argFormat [") << argFormat << "]" << endl; 
-    for (int i =0; i< sizeof(charHeap)-1; i++)
-    {
-      char c = charHeap[i];
-      if (c  >= ' ' )
-      {
-        Serial << c;
-      }
-      else
-      {
-        Serial << ": CHAR " << (int)(c) << endl; 
-      }
-    }
-    /*
-    for (int z = 0;z< numLcdFields;z++)
-    {
-      Serial << F("looking **** at formats: id =") << z << F("  [") << lcdFields[z].formatString << F("]") << endl;
-    }
-    free(lcdFields[id].formatString);
-    char *buf = (char *)malloc (sizeof (argFormat));
-    if (!buf) Serial << F("fieldFormat - Malloc Fail") << endl;
-    strcpy (buf,argFormat);
-    lcdFields[id].formatString = buf;
-    Serial << F("new format =[") << lcdFields[id].formatString << F("]") << endl;
-    */
-  }
-  /*
-  for (int z = 0;z< numLcdFields;z++)
-  {
-    Serial << F("looking at formats: id =") << z << F("  [") << lcdFields[z].formatString << F("]") << endl;
-  }
-  */
-  //paint(id); 
-}
-
-void commandIUpdateLcdFieldFormat_old()
-{
-  char *argId = cmdI2C.next();
-  char *argFormat = cmdI2C.next();
-  uint8_t id=0;
-  if (argId != NULL) id = atoi(argId);
-  if (id >= numLcdFields) return;
-  if (argFormat != NULL) 
-  {
-    charHeap_pushString(id,argFormat);
-
-    Serial << F("charHeap contents") << endl; 
-    for (int i =0; i< charHEAP_SIZE; i++)
-    {
-      char c = charHeap[i];
-      if (c  >= ' ' )
-      {
-        Serial << c;
-      }
-      else
-      {
-        Serial << ": CHAR " << (int)(c) << endl; 
-      }
-    }
-    /*
-    for (int z = 0;z< numLcdFields;z++)
-    {
-      Serial << F("looking ##### at formats: id =") << z << F("  [") << lcdFields[z].formatString << F("]") << endl;
-    }
-    */
-    
-    /*
-    free(lcdFields[id].formatString);
-    char *buf = (char *)malloc (sizeof (argFormat));
-    if (!buf) Serial << F("fieldFormat - Malloc Fail") << endl;
-    strcpy (buf,argFormat);
-    lcdFields[id].formatString = buf;
-    Serial << F("new format =[") << lcdFields[id].formatString << F("]") << endl;
-    for (int z = 0;z< numLcdFields;z++)
-    {
-      Serial << F("looking at formats: id =") << z << F("  [") << lcdFields[z].formatString << F("]") << endl;
-    }
-    */
-  }
-}

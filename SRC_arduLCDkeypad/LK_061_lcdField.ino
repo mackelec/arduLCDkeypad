@@ -2,7 +2,7 @@ char preBuffer[10],postBuffer[10];
 
 
 
-const char timeFormat_1[] PROGMEM = {"HH:mm:ss"};
+/*const char timeFormat_1[] PROGMEM = {"HH:mm:ss"};
 const char timeFormat_2[] PROGMEM = {"HH:mm"};
 const char timeFormat_3[] PROGMEM = {"YYYY-MM-dd HH:mm:ss"};
 const char timeFormat_4[] PROGMEM = {"YYYY-MM-dd HH:mm"};
@@ -11,13 +11,14 @@ const char printTimeFormat_1[] PROGMEM = {"%02d:%02d:%02d"};
 const char printTimeFormat_2[] PROGMEM = {"%02d:%02d"};
 const char printTimeFormat_3[] PROGMEM = {"%04d-%02d-%02d %02d:%02d:%02d"};
 const char printTimeFormat_4[] PROGMEM = {"%04d-%02d-%02d %02d:%02d"};
+*/
 
 class lcdField
 {
 public:  
   uint8_t id=255;
-  char *displayString; 
-  char *formatString;
+  //char *displayString; 
+  //char *formatString;
   uint8_t col;
   uint8_t row;
   uint8_t len;
@@ -30,6 +31,7 @@ public:
   uint8_t  flashModeTimeout = 0; // seconds
   uint8_t  visibleModeTimeout = 0;
   uint8_t varType = 0;
+  
   void updateVar(unsigned long Lvar);
   bool isVisible();
   void visible(bool v);
@@ -64,6 +66,8 @@ void lcdField::updateVar(unsigned long Lvar)
 
 void lcdField::genString()
 {
+
+  char *displayString = charHeap_String(numLcdFields/2 + id);
   
   if (displayString)
   {
@@ -71,7 +75,7 @@ void lcdField::genString()
   
   }
 
-  formatString = charHeap_String(id);
+  char *formatString = charHeap_String(id);
   if (! formatString) return;
   char _buff[21];
   PString pStr(_buff,sizeof(_buff));
@@ -123,6 +127,7 @@ void lcdField::genString()
 void lcdField::buffPrint_time(char *buff)
 {
   //pStr->begin();
+  char *formatString = charHeap_String(id);
   time_t t = u.time_value;
   //char *fmt;
   if (strcmp_P(formatString,PSTR("HH:mm:ss")) == 0) 
@@ -140,6 +145,7 @@ void lcdField::buffPrint_time(char *buff)
 void lcdField::buffPrint_float(PString *pStr)
 {
   char *strPreFormat,*strPostFormat;
+  char *formatString = charHeap_String(id);
   int precision = floatPrecision(formatString,preBuffer,postBuffer);
   int fSize = strlen(preBuffer) + strlen(postBuffer) +10;
   char strF[fSize];

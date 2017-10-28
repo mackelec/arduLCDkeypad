@@ -1,5 +1,5 @@
 
-#define numLcdFields      4
+#define numLcdFields      5
 #define charHEAP_SIZE     100
 #define charHEAP_MAXLEN   25
 
