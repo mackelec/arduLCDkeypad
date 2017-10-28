@@ -59,7 +59,7 @@ LCD fields are available to preset a field, which has its position and format st
 Updates the Format stored for the field.  This function is useful because the standard WIRE library only has a buffer of 34 and a long format string can cause the updateLcdField command to exceed the buffer size.
 - updateTime(unsigned long notTime)
 ArduLCDkeyboard uses Time library to keep real time.  Use time_t (which is unsigned long) to update to current time.
-- setAutoTime(fieldId)
+- setAutoTime(fieldId)   
 This allows arduLCDkeypad to maintain the LCD field automatically (on a second basis).  You need to prime the LCD field with a suitable format string ie, "HH:mm:ss" or "YYYY-MM-dd HH:mm:ss". Negative Id will turn it off.
 
 
