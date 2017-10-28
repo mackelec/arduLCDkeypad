@@ -46,8 +46,10 @@ Set the Backlight brightness.  When key is pressed it goes to Active level, when
 - BackLightTimer(int backlightTimeout)
 Sets the backlightTimer (seconds)
 - Buzz(int BuzzLen)
+
 Turns buzzer on for buzzLen milliseconds (one shot)
 - char keyPressed()
+
 Returns a char value of a keypress.  A value of NO_KEY indicates no key was pressed
 
 
