@@ -34,9 +34,21 @@
 - arduLCDkeypad(Wire,42)
 Instantiation of arduLCDkeypad object.  If Wire, second parameter defines I2C address.
 
-- Clear() Clears LCD
+- Clear() 
+Clears LCD
 - setCursor(col,row)
-- printAt(char message[],col,row,blank)  Prints a char string at col,row. Blank is optional; Blank will print number (blank value) of spaces at col,row before printing string.
-- Contrast( int percent) sets the contrast level (0 - 100 default is 5).
-- BackLight(int percentStandby, int percentActive)  Set the Backlight brightness.  When key is pressed it goes to Active level, when BackLight Timer times out it goes back to standby level.
+- printAt(char message[],col,row,blank)  
+Prints a char string at col,row. Blank is optional; Blank will print number (blank value) of spaces at col,row before printing string.
+- Contrast( int percent) 
+Sets the contrast level (0 - 100 default is 5).
+- BackLight(int percentStandby, int percentActive)  
+Set the Backlight brightness.  When key is pressed it goes to Active level, when BackLight Timer times out it goes back to standby level.
+- BackLightTimer(int backlightTimeout)
+Sets the backlightTimer (seconds)
+- Buzz(int BuzzLen)
+Turns buzzer on for buzzLen milliseconds (one shot)
+- char keyPressed()
+Returns a char value of a keypress.  A value of NO_KEY indicates no key was pressed
+
+
 
