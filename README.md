@@ -28,3 +28,15 @@
 ## Library
 - Simple interfacing to arduLCDkeypad.
 
+### Commands
+
+- arduLCDkeypad(Serial) 
+- arduLCDkeypad(Wire,42)
+Instantiation of arduLCDkeypad object.  If Wire, second parameter defines I2C address.
+
+- Clear() Clears LCD
+- setCursor(col,row)
+- printAt(char message[],col,row,blank)  Prints a char string at col,row. Blank is optional; Blank will print number (blank value) of spaces at col,row before printing string.
+- Contrast( int percent) sets the contrast level (0 - 100 default is 5).
+- BackLight(int percentStandby, int percentActive)  Set the Backlight brightness.  When key is pressed it goes to Active level, when BackLight Timer times out it goes back to standby level.
+
