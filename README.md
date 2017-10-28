@@ -46,11 +46,20 @@ Set the Backlight brightness.  When key is pressed it goes to Active level, when
 - BackLightTimer(int backlightTimeout)
 Sets the backlightTimer (seconds)
 - Buzz(int BuzzLen)
-
 Turns buzzer on for buzzLen milliseconds (one shot)
 - char keyPressed()
-
 Returns a char value of a keypress.  A value of NO_KEY indicates no key was pressed
-
+- bool recReset()
+returns True if arduLCDkeyboard has been RESET. Must be called after calling keyPressed().
+- bool present()
+returns true if arduLCDkeyboard is responding.  Must be called after calling keyPressed().
+- updateLcdField(id,col,row,len,visible,strFormat)
+LCD fields are available to preset a field, which has its position and format string (C standard) stored, then only needing the value for that field to be updated as required.  That value will be displayed using the format string.
+- updateLcdFieldFormat(id,char strFormat)
+Updates the Format stored for the field.  This function is useful because the standard WIRE library only has a buffer of 34 and a long format string can cause the updateLcdField command to exceed the buffer size.
+- updateTime(unsigned long notTime)
+ArduLCDkeyboard uses Time library to keep real time.  Use time_t (which is unsigned long) to update to current time.
+- setAutoTime(fieldId)
+This allows arduLCDkeypad to maintain the LCD field automatically (on a second basis).  You need to prime the LCD field with a suitable format string ie, "HH:mm:ss" or "YYYY-MM-dd HH:mm:ss". Negative Id will turn it off.
 
 
