@@ -20,6 +20,7 @@
 - Basic LCD fuctions like Clear, Cursor, Print, Print at,
 ### Extra features
 - Predefine a field (template) with a format string (as in C printf format).  Just update a variable value and it will format and print it at the right location.
+- Handles Float Formats (basic).  eg., "%03.5f"
 - Predefined Time formats.  ("HH:mm:ss") or ("YYYY-MM-dd HH:mm:ss") Using the long value (time_t ) as the variable type.
 - Auto time mode: using Time library to maintain a real time clock; if used it will autonomously refresh the time field every second.
 - Dual settings for backlight level.  Keypress activates higher backlight level and times out to lower level.
